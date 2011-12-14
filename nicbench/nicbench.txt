@@ -1,0 +1,15 @@
+server
+
+# make server2 
+# ./server2
+
+client
+
+# make client2
+# make client_ctl2 
+# ./client_ctl2 ./client2 32768 60 10.10.0.100 10.10.1.100
+
+1. 32Kbytes(32768bytes)
+2. 60sec
+3. server IP 1
+4. server IP 2

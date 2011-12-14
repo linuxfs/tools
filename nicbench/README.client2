@@ -1,0 +1,15 @@
+This is reference for Client2/Server2 (and Client_ctl2)
+
+1. To build tools, do "make".
+2. Run server2 on each reference machine.
+3. Execute client2 for indivisual use.
+   For regular testing, Use client_ctl2 for your convenience.
+
+	# ./client2 -[sr] -H <IPaddr> [-S <packet size>] [-T <time interval>]
+	or
+	# ./client_ctl2 ./client2 packet_size time_interval IPaddr [IPaddr2]
+
+   (ex.) 
+	# ./client_ctl2 ./client2 32768 60 10.10.0.100 10.10.0.101
+
+That's  all.

@@ -1,0 +1,23 @@
+nicsetup.sh:
+
+[syntax]
+	nicsetup.sh up <ether0>
+		up interface <ether0> as normal.
+
+	nicsetup.sh down
+		down all ether interfaces
+
+	nicsetup.sh rmmod
+		down all ether interfaces and uninstall all drivers
+
+	nicsetup.sh <TEAM> <ether0> [<ether1> ... <ether7>]
+		configure specified <TEAM> by using interface between <ether0> from <etherN>
+
+
+speed2.sh:
+
+[syntac]
+	speed2.sh <name> <buf-size> <TEAM> <ether0> [<ether1> ... <ether7>]
+		benchmark configured <TEAM> between reguler <ether0>
+
+		NOTE: IP addresses must be 10.10.0.10x (x=0,1,2,...,7)
