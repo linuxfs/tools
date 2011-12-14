@@ -1,6 +1,6 @@
 /*
- * ���ĤΥե�������Ф���ʣ���Ρ��ɤ����I/O��Ԥ�TP
- * �ƥΡ��ɤϡ�����줿�ΰ�ˤ���I/O��Ф��ޤ���
+ * １つのファイルに対して複数ノードからのI/Oを行うTP
+ * 各ノードは、決められた領域にだけI/Oを出します。
  */
 
 #define _FILE_OFFSET_BITS 64
@@ -16,11 +16,11 @@
 #define FILE_NAME "/mnt/pfs-mirror/y-takahashi/lock_test2"
 
 /*
- * IO_SIZE  �����������IOSIZE����ꤷ�ޤ����ǥե���Ȥ�32768(32K)
- *          �����PFS�Υ���å��夬32K�ʤΤ˵������ޤ���
- * IO_POINT �ƥΡ��ɤ�I/O��Ԥ��ΰ�Ǥ����ǥե���Ȥ�8
- *          �Ĥޤ꣱�Ρ��ɤϣ��ս��32K��256K���ΰ���Ф���I/O��Ԥ�
- *          512�Ρ��ɰ��ƥ��������ξ���128M�Υե�������Ф���I/O��Ԥ�
+ * IO_SIZE  １回当たりのIOSIZEを指定します。デフォルトは32768(32K)
+ *          これはPFSのキャッシュが32Kなのに起因します。
+ * IO_POINT 各ノードがI/Oを行う領域です。デフォルトは8
+ *          つまり１ノードは８箇所×32K＝256Kの領域に対してI/Oを行う
+ *          512ノード一斉アクセスの場合は128Mのファイルに対してI/Oを行う
  */
 #define IO_SIZE   32768
 #define IO_POINT  128

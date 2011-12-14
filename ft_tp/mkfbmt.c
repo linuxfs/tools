@@ -1,5 +1,5 @@
 /*
- *	mkfbmt.c ¥Õ¥¡¥¤¥ëÁàºî»ş´ÖÂ¬Äê
+ *	mkfbmt.c ãƒ•ã‚¡ã‚¤ãƒ«æ“ä½œæ™‚é–“æ¸¬å®š
  *
  *	2005.09.14  updated by y-takahashi
  *      2007.01.05  updated by y-takahashi

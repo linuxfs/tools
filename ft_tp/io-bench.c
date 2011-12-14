@@ -18,7 +18,7 @@
 int write_test(int, int, char *);
 int read_test(int, int, char *);
 
-/* »ş´ÖÂ¬ÄêÍÑ */
+/* æ™‚é–“æ¸¬å®šç”¨ */
 int e_time(struct timeval *first, struct timeval *second)
 {
 	if (first->tv_usec > second->tv_usec) {
@@ -29,18 +29,18 @@ int e_time(struct timeval *first, struct timeval *second)
 		+ (int)(second->tv_usec - first->tv_usec));
 }
 
-/* ¥á¥¤¥ó½èÍı   ¥ª¥×¥·¥ç¥ó¤òÆÉ¤ß¹ş¤ó¤Ç¤½¤ì¤¾¤ì¤Î¥â¥¸¥å¡¼¥ë¤ØÅ¾Á÷
-		°ú¿ô¤Ï¥ª¥×¥·¥ç¥ó¡¢getopt¤ò»ÈÍÑ¤·¤Æ½èÍı
-		¥â¥¸¥å¡¼¥ë¤Ø¤ÎÅ¾Á÷½ĞÎÏ¤Ï²ó¿ô¡¢¥µ¥¤¥º¡¢¥Õ¥¡¥¤¥ëÌ¾
+/* ãƒ¡ã‚¤ãƒ³å‡¦ç†   ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’èª­ã¿è¾¼ã‚“ã§ãã‚Œãã‚Œã®ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¸è»¢é€
+		å¼•æ•°ã¯ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã€getoptã‚’ä½¿ç”¨ã—ã¦å‡¦ç†
+		ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¸ã®è»¢é€å‡ºåŠ›ã¯å›æ•°ã€ã‚µã‚¤ã‚ºã€ãƒ•ã‚¡ã‚¤ãƒ«å
 		rcount | wcount,size,filename		*/
 extern char *optarg;
 int main(int argc, char **argv)
 {
-/* ½é´üÃÍÀßÄê¡¡ c getoptÍÑÊÑ¿ô size ¥µ¥¤¥º(1048576byte)
-		rcount ÆÉ¤ß¹ş¤ß²ó¿ô(0²ó) wcount ½ñ¤­¹ş¤ß²ó¿ô(0²ó)
-		sizesw size option ¤¬ÀßÄê¤µ¤ì¤¿¤«¤É¤¦¤«¤Î¥Õ¥é¥°
-		filename ¥Õ¥¡¥¤¥ë¤ÎÌ¾Á°¡Ê"/tmp/io-bench.tmp")
-		st statbuf statÍÑÎÎ°è  */
+/* åˆæœŸå€¤è¨­å®šã€€ c getoptç”¨å¤‰æ•° size ã‚µã‚¤ã‚º(1048576byte)
+		rcount èª­ã¿è¾¼ã¿å›æ•°(0å›) wcount æ›¸ãè¾¼ã¿å›æ•°(0å›)
+		sizesw size option ãŒè¨­å®šã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+		filename ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ï¼ˆ"/tmp/io-bench.tmp")
+		st statbuf statç”¨é ˜åŸŸ  */
 	int c;
 	int size = 1048576;
 	int rcount = 0;
@@ -50,20 +50,20 @@ int main(int argc, char **argv)
 	int st;
 	struct stat statbuf;
 
-/* ¥Õ¥¡¥¤¥ë¥µ¥¤¥º½èÍı´ØÏ¢¤ÎÊÑ¿ô½é´ü²½ */
-	int mem[4];       /* ¥­¥í¡¢¥á¥¬¡¢¥®¥¬¡¡ÍÑ¤Î´ğ¿ôÊİÂ¸ÍÑ */
-	char *ans;        /* Ê¸»ú¸¡º÷ÍÑ¥İ¥¤¥ó¥¿ÊİÂ¸°è */
+/* ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºå‡¦ç†é–¢é€£ã®å¤‰æ•°åˆæœŸåŒ– */
+	int mem[4];       /* ã‚­ãƒ­ã€ãƒ¡ã‚¬ã€ã‚®ã‚¬ã€€ç”¨ã®åŸºæ•°ä¿å­˜ç”¨ */
+	char *ans;        /* æ–‡å­—æ¤œç´¢ç”¨ãƒã‚¤ãƒ³ã‚¿ä¿å­˜åŸŸ */
 	char mainbuff[PATH_MAX]="kKmMgG", findbuff[PATH_MAX]="", sizebuff[PATH_MAX]="";
-	int x;            /* ¥İ¥¤¥ó¥¿¤Î¾ì½êµ­²±°è */
+	int x;            /* ãƒã‚¤ãƒ³ã‚¿ã®å ´æ‰€è¨˜æ†¶åŸŸ */
 	strcpy(filename, "/tmp/io-bench.tmp");
 	mem[1] = 1024;
 	mem[2] = 1048576;
 	mem[3] = 1073741824;
 
-/* ¥ª¥×¥·¥ç¥ó¤ÎÀßÄê¡¡	r: ÆÉ¤ß¹ş¤ß¥ª¥×¥·¥ç¥ó¡¡rcount
-			w: ½ñ¤­¹ş¤ß¥ª¥×¥·¥ç¥ó¡¡wcount
-			s: ¥µ¥¤¥º¥ª¥×¥·¥ç¥ó¡¡size
-			¥ª¥×¥·¥ç¥óÌµ¤·¡Ä¥Õ¥¡¥¤¥ëÌ¾¡Äfilename	*/
+/* ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®è¨­å®šã€€	r: èª­ã¿è¾¼ã¿ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã€€rcount
+			w: æ›¸ãè¾¼ã¿ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã€€wcount
+			s: ã‚µã‚¤ã‚ºã‚ªãƒ—ã‚·ãƒ§ãƒ³ã€€size
+			ã‚ªãƒ—ã‚·ãƒ§ãƒ³ç„¡ã—â€¦ãƒ•ã‚¡ã‚¤ãƒ«åâ€¦filename	*/
 	while   ((c = getopt(argc, argv, "r:w:s:")) > 0)  {
 		switch  (c) {
 		case  'r':
@@ -103,12 +103,12 @@ int main(int argc, char **argv)
 		}
 	}
 
-/* ¥Õ¥¡¥¤¥ëÌ¾¤Î»ØÄê¤¬¤¢¤Ã¤¿¾ì¹çfilename¤Ë¥Õ¥¡¥¤¥ëÌ¾¤òÂåÆş */
+/* ãƒ•ã‚¡ã‚¤ãƒ«åã®æŒ‡å®šãŒã‚ã£ãŸå ´åˆfilenameã«ãƒ•ã‚¡ã‚¤ãƒ«åã‚’ä»£å…¥ */
 	if (optind < argc) {
 		strcpy(filename, argv[optind++]);
 	}
 
-/* »ØÄê¤µ¤ì¤¿¥Õ¥¡¥¤¥ë¤¬¥Õ¥¡¥¤¥ë¤«¡¢¥Ç¥£¥ì¥¯¥È¥ê¤«¤òÈ½ÊÌ */
+/* æŒ‡å®šã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ãŒãƒ•ã‚¡ã‚¤ãƒ«ã‹ã€ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‹ã‚’åˆ¤åˆ¥ */
 	errno = 0;
 	st = stat(filename, &statbuf);
 	if (st == -1) {
@@ -117,13 +117,13 @@ int main(int argc, char **argv)
 			exit (1);
 		}
 	}
-	else {	/* filemode¤¬¥Ç¥£¥ì¥¯¥È¥ê¤Î¾ì¹ç¡¡¥Ç¥£¥ì¥¯¥È¥ê¡Ü/io-bench.tmp */
+	else {	/* filemodeãŒãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®å ´åˆã€€ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªï¼‹/io-bench.tmp */
 		if (S_ISDIR(statbuf.st_mode)) {
 			strcat(filename, "/io-bench.tmp");
 		}
 	}
 
-/* filename ¤Î¥Õ¥¡¥¤¥ë¥µ¥¤¥º¤ò¥µ¥¤¥º¤ËÂåÆş¡Êsize»ØÄê¤¬Ìµ¤¤¾ì¹ç¡Ë */
+/* filename ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã‚’ã‚µã‚¤ã‚ºã«ä»£å…¥ï¼ˆsizeæŒ‡å®šãŒç„¡ã„å ´åˆï¼‰ */
 	st = stat(filename, &statbuf);
 	if (st == -1) {
 	}
@@ -134,7 +134,7 @@ int main(int argc, char **argv)
 	}
 
 
-/* ½ñ¤­¹ş¤ß½èÍı¡¢ÆÉ¤ß¹ş¤ß½èÍı  ²ó¿ô¤¬£°¤Î¾ì¹ç¼Â¹Ô¤·¤Ê¤¤	*/
+/* æ›¸ãè¾¼ã¿å‡¦ç†ã€èª­ã¿è¾¼ã¿å‡¦ç†  å›æ•°ãŒï¼ã®å ´åˆå®Ÿè¡Œã—ãªã„	*/
 	if (wcount > 0) {
 		write_test(wcount, size, filename);
 	}
@@ -144,11 +144,11 @@ int main(int argc, char **argv)
 	return 0;
 }
 
-/* ÆÉ¤ß¹ş¤ß½èÍı¡¡°ú¿ô¡ÄÆÉ¤ß¹ş¤ß²ó¿ô¡¢¥µ¥¤¥º¡¢¥Õ¥¡¥¤¥ëÌ¾
+/* èª­ã¿è¾¼ã¿å‡¦ç†ã€€å¼•æ•°â€¦èª­ã¿è¾¼ã¿å›æ•°ã€ã‚µã‚¤ã‚ºã€ãƒ•ã‚¡ã‚¤ãƒ«å
 			rcount,size,filename
-		½ĞÎÏ¡ÄÆÉ¤ß¹ş¤ß»ş´Ö¡¢ºÇ¾®ÃÍ¡¢ºÇÂçÃÍ¡¢Ê¿¶ÑÃÍ¡¢Mbyte/s
-		½é´üÃÍ¡¢max=0.00 ºÇÂçÃÍ¡¢min=9999999.99 ºÇ¾®ÃÍ¡¢kei=0.00 ¹ç·×
-			mbps Mb/s·×»»ÍÑ¡¡idx¡¡·×»»ÍÑ°ì»şÊİ´É¡¡read_kei ¼ÂÆÉ¹ş¹ç·× */
+		å‡ºåŠ›â€¦èª­ã¿è¾¼ã¿æ™‚é–“ã€æœ€å°å€¤ã€æœ€å¤§å€¤ã€å¹³å‡å€¤ã€Mbyte/s
+		åˆæœŸå€¤ã€max=0.00 æœ€å¤§å€¤ã€min=9999999.99 æœ€å°å€¤ã€kei=0.00 åˆè¨ˆ
+			mbps Mb/sè¨ˆç®—ç”¨ã€€idxã€€è¨ˆç®—ç”¨ä¸€æ™‚ä¿ç®¡ã€€read_kei å®Ÿèª­è¾¼åˆè¨ˆ */
 int read_test(int rcount, int size, char *filename)
 {
 	int fd;
@@ -167,12 +167,12 @@ int read_test(int rcount, int size, char *filename)
 		return -1;
 	}
 
-/* gettime¤Ë¤ª¤±¤ë½èÍı»ş´Ö¤Î»»½Ğ¡£	*/
+/* gettimeã«ãŠã‘ã‚‹å‡¦ç†æ™‚é–“ã®ç®—å‡ºã€‚	*/
 	gettimeofday (&start, NULL);
 	gettimeofday (&stop, NULL);
 	default_etime = e_time(&start, &stop);
 
-/* rcountÊ¬ÆÉ¹şloop */
+/* rcountåˆ†èª­è¾¼loop */
 	for (i = 1; i <= rcount;) {
 		fd = open(filename, O_RDONLY, 0);
 		if (fd < 0) {		/* open check */
@@ -180,7 +180,7 @@ int read_test(int rcount, int size, char *filename)
 			free(buf);
 			return -1;
 		}
-		/* ¥«¥¦¥ó¥È¤µ¤ì¤¿²ó¿ôÆÉ¤ß¹ş¤à¤«¡¢EOF¤Ë¤Ê¤ë¤Ş¤Ç¡¢EOF¤Î¾ì¹çbleak;¤ÇÈ´¤±¤ë */
+		/* ã‚«ã‚¦ãƒ³ãƒˆã•ã‚ŒãŸå›æ•°èª­ã¿è¾¼ã‚€ã‹ã€EOFã«ãªã‚‹ã¾ã§ã€EOFã®å ´åˆbleak;ã§æŠœã‘ã‚‹ */
 		while (i <= rcount) {
 			int read_size;
 			gettimeofday (&start, NULL);
@@ -191,7 +191,7 @@ int read_test(int rcount, int size, char *filename)
 				read_kei += read_size;
 				idx = (e_time(&start, &stop) - default_etime);
 				printf("read-test %d   %.2fms. readsize=%d\n", i, idx / 1000, read_size);
-				/* ºÇ¹âÃÍ¡¢ºÇÄãÃÍ¡¢¹ç·×¤Î·×»» */
+				/* æœ€é«˜å€¤ã€æœ€ä½å€¤ã€åˆè¨ˆã®è¨ˆç®— */
 				if (max < idx) {
 					max = idx;
 				}
@@ -220,7 +220,7 @@ int read_test(int rcount, int size, char *filename)
 	else {
 		mbps = ((1000000 / kei) * (read_kei / (1024 * 1024)));
 	}
-/* ºÇ½ª¹ÔÉ½¼¨ */
+/* æœ€çµ‚è¡Œè¡¨ç¤º */
 	printf("read-test Min %.2fms Max %.2fms Average %.2fms %.2fMbyte/s\n",
 		min / 1000, max / 1000, (kei / rcount) / 1000, mbps);
 	printf("io-bench: %d count read-test at %d byte Done.\n\n", rcount, size);
@@ -228,12 +228,12 @@ int read_test(int rcount, int size, char *filename)
 	return 0;
 }
 
-/* ½ñ¤­¹ş¤ß½èÍı ¡¡°ú¿ô¡Ä½ñ¤­¹ş¤ß²ó¿ô¡¢¥µ¥¤¥º¡¢¥Õ¥¡¥¤¥ëÌ¾
+/* æ›¸ãè¾¼ã¿å‡¦ç† ã€€å¼•æ•°â€¦æ›¸ãè¾¼ã¿å›æ•°ã€ã‚µã‚¤ã‚ºã€ãƒ•ã‚¡ã‚¤ãƒ«å
 			wcount,size,filename
-		½ĞÎÏ¡Ä½ñ¤­¹ş¤ß»ş´Ö¡¢ºÇ¾®ÃÍ¡¢ºÇÂçÃÍ¡¢Ê¿¶ÑÃÍ¡¢Mbyte/s
-		½é´üÃÍ¡¢max=0.00 ºÇÂçÃÍ¡¢min=9999999.99 ºÇ¾®ÃÍ¡¢kei=0.00 ¹ç·×¡¢
-		average Ê¿¶Ñ·×»»ÍÑ mbps Mb/s·×»»ÍÑ idx¡¡·×»»ÍÑ°ì»şÊİ´É
-		i ¥ë¡¼¥×ÍÑÊÑ¿ô¡¡flg ½ñ¤­¹ş¤ßcheckÍÑ¡¡*/
+		å‡ºåŠ›â€¦æ›¸ãè¾¼ã¿æ™‚é–“ã€æœ€å°å€¤ã€æœ€å¤§å€¤ã€å¹³å‡å€¤ã€Mbyte/s
+		åˆæœŸå€¤ã€max=0.00 æœ€å¤§å€¤ã€min=9999999.99 æœ€å°å€¤ã€kei=0.00 åˆè¨ˆã€
+		average å¹³å‡è¨ˆç®—ç”¨ mbps Mb/sè¨ˆç®—ç”¨ idxã€€è¨ˆç®—ç”¨ä¸€æ™‚ä¿ç®¡
+		i ãƒ«ãƒ¼ãƒ—ç”¨å¤‰æ•°ã€€flg æ›¸ãè¾¼ã¿checkç”¨ã€€*/
 int write_test(int wcount, int size, char *filename)
 {
 	int fd;
@@ -257,18 +257,18 @@ int write_test(int wcount, int size, char *filename)
 	}
 	fd = open(filename, O_RDWR|O_CREAT|O_APPEND, 0666);
 	/* fd = creat(filename,0666); */
-	if (fd < 0) {		/* ¥Õ¥¡¥¤¥ëopen check */
+	if (fd < 0) {		/* ãƒ•ã‚¡ã‚¤ãƒ«open check */
 		perror(filename);
 		free(buf);
 		return -1;
 	}
 
-/* gettime¤Ë¤ª¤±¤ë½èÍı»ş´Ö¤Î»»½Ğ¡£	*/
+/* gettimeã«ãŠã‘ã‚‹å‡¦ç†æ™‚é–“ã®ç®—å‡ºã€‚	*/
 	gettimeofday (&start, NULL);
 	gettimeofday (&stop,  NULL);
 	default_etime = e_time(&start, &stop);
 
-/* wcountÊ¬¤À¤±½ñ¤­¹ş¤ß */
+/* wcountåˆ†ã ã‘æ›¸ãè¾¼ã¿ */
 	for (i = 1; i <= wcount; i++) {
 		gettimeofday (&start, NULL);
 		flg = write(fd, buf, size);
@@ -281,7 +281,7 @@ int write_test(int wcount, int size, char *filename)
 		else {
 			idx = (e_time(&start, &stop) - default_etime);
 			printf("write-test %d   %.2fms. size=%d\n", i, idx / 1000, flg);
-			/* ºÇ¹âÃÍ¡¢ºÇÄãÃÍ¡¢¹ç·×¤Î·×»» */
+			/* æœ€é«˜å€¤ã€æœ€ä½å€¤ã€åˆè¨ˆã®è¨ˆç®— */
 			if (max < idx) {
 				max = idx;
 			}
@@ -304,7 +304,7 @@ int write_test(int wcount, int size, char *filename)
 	else {
 		average = (kei / wcount) / 1000;
 	}
-/* ºÇ½ª¹ÔÉ½¼¨ */
+/* æœ€çµ‚è¡Œè¡¨ç¤º */
 	printf("write-test Min %.2fms Max %.2fms Average %.2fms %.2fMbyte/s\n",
 		min / 1000, max / 1000, average, mbps);
 	printf("io-bench: %d count write-test at %d byte Done.\n\n", wcount, size);

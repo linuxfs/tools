@@ -1,8 +1,8 @@
 /*
  * spclient.c
- *   µ¶Æó½Å²½´ÉÍý¥³¥Þ¥ó¥É¤¬µ¶¥¹¥Ô¥ó¥É¥ë¥³¥Ô¡¼¥Ç¡¼¥â¥ó¤ØÍ×µá¤ò
- *   ¹Ô¤¦¥Æ¥¹¥È¥×¥í¥°¥é¥à¤Ç
- *   STREAM·¿¤Î¥½¥±¥Ã¥È¤ò»È¤¤¤Þ
+ *   å½äºŒé‡åŒ–ç®¡ç†ã‚³ãƒžãƒ³ãƒ‰ãŒå½ã‚¹ãƒ”ãƒ³ãƒ‰ãƒ«ã‚³ãƒ”ãƒ¼ãƒ‡ãƒ¼ãƒ¢ãƒ³ã¸è¦æ±‚ã‚’
+ *   è¡Œã†ãƒ†ã‚¹ãƒˆãƒ—ãƒ­ã‚°ãƒ©ãƒ ã§
+ *   STREAMåž‹ã®ã‚½ã‚±ãƒƒãƒˆã‚’ä½¿ã„ã¾
  */
 
 #include <stdio.h>
@@ -10,7 +10,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/time.h>
-#include <netinet/in.h>  /* #include < sys/un.h >¤ÎÂå¤ï¤ê */
+#include <netinet/in.h>  /* #include < sys/un.h >ã®ä»£ã‚ã‚Š */
 #include <netdb.h>
 #include <errno.h>
 #include <signal.h>
@@ -57,18 +57,18 @@ int main(int argc, char **argv)
 
 	if ((acc = spcopy_connect(hostname)) < 0) {
 		printf("connect error %s[%d]\n", strerror(-acc), -acc);
-		exit(1); /* ½é´ü²½ */
+		exit(1); /* åˆæœŸåŒ– */
 	}
 	if ((ret = spcopy_send_recv(acc, &req, &ack)) < 0) {
 		printf("connect error %s[%d]\n", strerror(-ret), -ret);
-		 exit(1); /* Á÷¼õ¿® */
+		 exit(1); /* é€å—ä¿¡ */
 	}
 
 	req.status = SPCOPY_STAT;
 	for (i = 0; ack.ack_status == 0; i++) {
 		if ((ret = spcopy_send_recv(acc, &req, &ack)) < 0) {
 			printf("connect error %s[%d]\n", strerror(-ret), -ret);
-			exit(1); /* Á÷¼õ¿® */
+			exit(1); /* é€å—ä¿¡ */
 		}
 		printf("ack [%2d]: %d \n", i, ack.ack_status);
 		printf("[stat] copyst %d copytype %"PRIu32" files %"PRIu64"/%"PRIu64" size %"PRIu64"/%"PRIu64" times %"PRIu64"\n",
@@ -80,7 +80,7 @@ int main(int argc, char **argv)
 
 	if ((ret = spcopy_close(acc)) < 0) {
 		 printf("connect error %s[%d]\n", strerror(-ret), -ret);
-		exit(1); /* ¸å½èÍý */
+		exit(1); /* å¾Œå‡¦ç† */
 	}
 	return 0;
 }
